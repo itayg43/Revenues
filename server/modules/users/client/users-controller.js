@@ -5,10 +5,17 @@ const usersService = require("../business-logic/users-service");
 
 async function registerUser(req, res) {
   const values = _.pick(req.body, ["name", "email", "password"]);
-  const user = await usersService.registerUser(values);
-  res.status(statusCode.success.created).json(user);
+  const { token, user } = await usersService.registerUser(values);
+  res.status(statusCode.success.created).header("x-token", token).json(user);
+}
+
+async function loginUser(req, res) {
+  const values = _.pick(req.body, ["email", "password"]);
+  const { token, user } = await usersService.loginUser(values);
+  res.status(statusCode.success.ok).header("x-token", token).json(user);
 }
 
 module.exports = {
   registerUser,
+  loginUser,
 };
