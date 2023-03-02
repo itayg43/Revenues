@@ -1,10 +1,10 @@
-const dataAccess = require("../data-access/users-data-access");
+const usersDataAccess = require("../data-access/users-data-access");
 
-async function register(values) {
-  const user = await dataAccess.register(values);
+async function registerUser(values) {
+  const user = await usersDataAccess.registerUser(values);
   return user;
 }
 
 module.exports = {
-  register,
+  registerUser,
 };

@@ -1,12 +1,14 @@
 const _ = require("lodash");
 
 const statusCode = require("../../../constants/status-code");
-const service = require("../business-logic/users-service");
+const usersService = require("../business-logic/users-service");
 
-async function register(req, res) {
+async function registerUser(req, res) {
   const values = _.pick(req.body, ["name", "email", "password"]);
-  const user = await service.register(values);
+  const user = await usersService.registerUser(values);
   res.status(statusCode.success.created).json(user);
 }
 
-module.exports = { register };
+module.exports = {
+  registerUser,
+};

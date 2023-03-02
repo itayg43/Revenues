@@ -5,13 +5,13 @@ const cors = require("cors");
 const requestLogger = require("./middlewares/request-logger");
 const errorHandler = require("./middlewares/error-handler");
 
-const api = require("./routes/api");
+const apiRouter = require("./routers/api-router");
 
 const app = express();
 app.use(cors());
 app.use(requestLogger);
 app.use(express.json());
-app.use("/api", api);
+app.use("/api", apiRouter);
 app.use(errorHandler);
 
 module.exports = app;
