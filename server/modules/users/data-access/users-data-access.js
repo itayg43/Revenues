@@ -1,5 +1,7 @@
 const { User, sequelize } = require("../../../db/models");
 
+const { EmailAddressAlreadyInUseError } = require("../errors/users-errors");
+
 const sequelizeUniqueError = "SequelizeUniqueConstraintError";
 
 async function registerUser(values) {
@@ -7,7 +9,7 @@ async function registerUser(values) {
     return await sequelize.transaction(async () => await User.create(values));
   } catch (error) {
     throw error.name === sequelizeUniqueError
-      ? new Error("Email address already in use.")
+      ? new EmailAddressAlreadyInUseError()
       : error;
   }
 }
