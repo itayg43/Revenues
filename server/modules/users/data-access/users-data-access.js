@@ -12,6 +12,10 @@ async function registerUser(values) {
   }
 }
 
+async function getUserById(id) {
+  return await User.findByPk(id);
+}
+
 async function getUserByEmail(email) {
   return await User.findOne({
     where: {
@@ -22,5 +26,6 @@ async function getUserByEmail(email) {
 
 module.exports = {
   registerUser,
+  getUserById,
   getUserByEmail,
 };
