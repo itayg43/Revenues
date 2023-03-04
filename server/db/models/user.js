@@ -4,6 +4,12 @@ const jwt = require("jsonwebtoken");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
+    static associate(models) {
+      User.hasMany(models.Expense, {
+        foreignKey: "uid",
+      });
+    }
+
     static async hashPassword(password) {
       const salt = await bcryptjs.genSalt(10);
       return await bcryptjs.hash(password, salt);
