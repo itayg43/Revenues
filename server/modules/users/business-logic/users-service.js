@@ -33,7 +33,13 @@ async function loginUser(values) {
   };
 }
 
+async function authenticateUser(id) {
+  const user = await usersDataAccess.getUserById(id);
+  return user;
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  authenticateUser,
 };

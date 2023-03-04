@@ -15,7 +15,14 @@ async function loginUser(req, res) {
   res.status(statusCode.success.ok).header("x-token", token).json(user);
 }
 
+async function authenticateUser(req, res) {
+  const { id } = req.user;
+  const user = await usersService.authenticateUser(id);
+  res.status(statusCode.success.ok).json(user);
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  authenticateUser,
 };
