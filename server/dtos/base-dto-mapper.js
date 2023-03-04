@@ -1,13 +1,13 @@
 const _ = require("lodash");
 
 class BaseDtoMapper {
-  keys() {
+  static keys() {
     return ["id"];
   }
 
-  map(model) {
-    return _.pick(model, this.keys);
+  static map(model) {
+    return _.pick(model, this.keys());
   }
 }
 
-module.exports = BaseDtoMapper;
+module.exports = { BaseDtoMapper };
