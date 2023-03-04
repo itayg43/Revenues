@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       comment: DataTypes.STRING,
       status: DataTypes.STRING,
       statusChangedAt: DataTypes.DATE,
-      paidAt: DataTypes.DATE,
+      purchasedAt: DataTypes.DATE,
     },
     {
       sequelize,

@@ -34,7 +34,7 @@ module.exports = {
       statusChangedAt: {
         type: Sequelize.DATE,
       },
-      paidAt: {
+      purchasedAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
