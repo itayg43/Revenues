@@ -5,7 +5,12 @@ const expensesService = require("../business-logic/expenses-service");
 
 async function submitExpense(req, res) {
   const { id } = req.user;
-  const values = _.pick(["category", "cost", "comment", "purchasedAt"]);
+  const values = _.pick(req.body, [
+    "category",
+    "cost",
+    "comment",
+    "purchasedAt",
+  ]);
   const expense = await expensesService.submitExpense({
     uid: id,
     ...values,

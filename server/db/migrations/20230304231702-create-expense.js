@@ -4,40 +4,17 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("expenses", {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER,
       },
-      uid: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      category: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      cost: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      comment: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        defaultValue: "",
-      },
-      status: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        defaultValue: "active",
-      },
-      statusChangedAt: {
-        type: Sequelize.DATE,
-      },
-      purchasedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
+      uid: Sequelize.INTEGER,
+      category: Sequelize.STRING,
+      cost: Sequelize.FLOAT,
+      comment: Sequelize.STRING,
+      purchasedAt: Sequelize.DATE,
+      status: Sequelize.STRING,
+      statusChangedAt: Sequelize.DATE,
     });
   },
   async down(queryInterface, Sequelize) {

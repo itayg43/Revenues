@@ -4,12 +4,6 @@ const jwt = require("jsonwebtoken");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate(models) {
-      User.hasMany(models.Expense, {
-        foreignKey: "uid",
-      });
-    }
-
     static async hashPassword(password) {
       const salt = await bcryptjs.genSalt(10);
       return await bcryptjs.hash(password, salt);
@@ -30,15 +24,29 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      email: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      password: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      registeredAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
       modelName: "User",
       tableName: "users",
-      updatedAt: false,
+      timestamps: false,
     }
   );
   return User;
