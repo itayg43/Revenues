@@ -16,9 +16,9 @@ const submitExpenseSchema = {
       errorMessage: "Comment is required.",
     },
   },
-  purchasedAt: {
+  timestamp: {
     exists: {
-      errorMessage: "Purchased time is required.",
+      errorMessage: "Timestamp is required.",
     },
   },
 };
