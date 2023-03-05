@@ -22,10 +22,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      registeredAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
     });
   },
   async down(queryInterface, Sequelize) {

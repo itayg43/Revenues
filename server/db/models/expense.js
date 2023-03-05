@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       uid: DataTypes.INTEGER,
       category: DataTypes.STRING,
       cost: DataTypes.FLOAT,
-      purchasedAt: DataTypes.DATE,
+      timestamp: DataTypes.DATE,
       status: {
         type: DataTypes.STRING,
-        defaultValue: "regular",
+        defaultValue: "active",
       },
-      statusChangedAt: {
+      statusChangeTimestamp: {
         type: DataTypes.DATE,
         defaultValue: null,
       },

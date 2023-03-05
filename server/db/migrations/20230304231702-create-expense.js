@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      purchasedAt: {
+      timestamp: {
         allowNull: false,
         type: Sequelize.DATE,
       },
@@ -29,7 +29,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      statusChangedAt: Sequelize.DATE,
+      statusChangeTimestamp: Sequelize.DATE,
     });
   },
   async down(queryInterface, Sequelize) {
