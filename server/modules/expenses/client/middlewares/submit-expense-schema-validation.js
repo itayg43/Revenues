@@ -11,11 +11,6 @@ const submitExpenseSchema = {
       errorMessage: "Cost is required.",
     },
   },
-  comment: {
-    exists: {
-      errorMessage: "Comment is required.",
-    },
-  },
   timestamp: {
     exists: {
       errorMessage: "Timestamp is required.",
