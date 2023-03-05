@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   Expense.init(
     {
       uid: DataTypes.INTEGER,
-      type: DataTypes.STRING,
+      category: DataTypes.STRING,
       cost: DataTypes.FLOAT,
       comment: DataTypes.STRING,
       status: DataTypes.STRING,
