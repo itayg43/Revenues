@@ -10,35 +10,17 @@ module.exports = (sequelize, DataTypes) => {
   }
   Expense.init(
     {
-      uid: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-      },
-      category: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      cost: {
-        allowNull: false,
-        type: DataTypes.FLOAT,
-      },
-      comment: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        defaultValue: "",
-      },
+      uid: DataTypes.INTEGER,
+      category: DataTypes.STRING,
+      cost: DataTypes.FLOAT,
+      purchasedAt: DataTypes.DATE,
       status: {
-        allowNull: false,
         type: DataTypes.STRING,
         defaultValue: "regular",
       },
       statusChangedAt: {
         type: DataTypes.DATE,
         defaultValue: null,
-      },
-      purchasedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
       },
     },
     {

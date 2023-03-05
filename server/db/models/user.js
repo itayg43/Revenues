@@ -14,30 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     generateToken() {
-      return jwt.sign(
-        {
-          id: this.id,
-        },
-        process.env.JWT_PRIVATE_KEY
-      );
+      return jwt.sign({ id: this.id }, process.env.JWT_PRIVATE_KEY);
     }
   }
   User.init(
     {
-      name: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      email: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      password: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
       registeredAt: {
-        allowNull: false,
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
