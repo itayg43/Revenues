@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   Profile.init(
     {
       uid: DataTypes.INTEGER,
-      incomeTaxCreditPointsAmount: DataTypes.FLOAT,
-      employerCompanyFeeValue: DataTypes.FLOAT,
+      incomeTaxCreditPoints: DataTypes.FLOAT,
+      monthlyEmployerCompanyFee: DataTypes.FLOAT,
+      monthlyInsurancePayments: DataTypes.FLOAT,
     },
     {
       sequelize,
