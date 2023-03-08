@@ -27,13 +27,13 @@ function calculateShiftsData(shifts) {
 }
 
 function calculateGrossEarningsExcludeCashTips(data) {
-  const value =
+  return (
     data.deliveries -
     data.deliveriesFee +
     data.creditTips -
     data.creditTipsVat -
-    data.creditTipsFee;
-  return parseFloat(value.toFixed(2));
+    data.creditTipsFee
+  );
 }
 
 module.exports = calculateShiftsData;

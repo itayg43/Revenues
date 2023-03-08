@@ -4,10 +4,7 @@ const shiftsService = require("../../shifts/business-logic/shifts-service");
 const calculateExpensesData = require("./utils/calculate-expenses-data");
 const calculateShiftsData = require("./utils/calculate-shifts-data");
 const calculateNationalInsuranceTaxFee = require("./utils/calculate-national-insurance-tax-fee");
-
-const incomeTax = {
-  creditPointValue: 235,
-};
+const calculateIncomeTaxFee = require("./utils/calculate-income-tax-fee");
 
 async function calculateMonthlyRevenues(uid, month) {
   const [profile, expenses, shifts] = await Promise.all([
@@ -18,8 +15,7 @@ async function calculateMonthlyRevenues(uid, month) {
   const expensesData = calculateExpensesData(expenses, profile);
   const shiftsData = calculateShiftsData(shifts);
   const nationalInsuranceTaxFee = calculateNationalInsuranceTaxFee(shiftsData);
-  const incomeTaxCredit =
-    profile.incomeTaxCreditPoints * incomeTax.creditPointValue;
+  const incomeTaxFee = calculateIncomeTaxFee(shiftsData, profile);
 }
 
 module.exports = {

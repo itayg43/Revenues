@@ -1,7 +1,8 @@
 const { Shift } = require("../../../db/models");
 const shiftsDataAccess = require("../data-access/shifts-data-access");
 const profilesService = require("../../profiles/business-logic/profiles-service");
-const vat = require("../../../constants/vat");
+
+const vat = 0.17;
 
 async function submitShift(values) {
   const { uid, deliveries, creditTips } = values;
