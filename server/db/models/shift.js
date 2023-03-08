@@ -11,18 +11,13 @@ module.exports = (sequelize, DataTypes) => {
   Shift.init(
     {
       uid: DataTypes.INTEGER,
-      deliveriesPaymentReceived: DataTypes.FLOAT,
-      creditTipsReceived: DataTypes.FLOAT,
-      cashTipsReceived: DataTypes.FLOAT,
+      deliveries: DataTypes.FLOAT,
+      deliveriesFee: DataTypes.FLOAT,
+      creditTips: DataTypes.FLOAT,
+      creditTipsVat: DataTypes.FLOAT,
+      creditTipsFee: DataTypes.FLOAT,
+      cashTips: DataTypes.FLOAT,
       timestamp: DataTypes.DATE,
-      status: {
-        type: DataTypes.STRING,
-        defaultValue: "active",
-      },
-      statusChangeTimestamp: {
-        type: DataTypes.DATE,
-        defaultValue: null,
-      },
     },
     {
       sequelize,

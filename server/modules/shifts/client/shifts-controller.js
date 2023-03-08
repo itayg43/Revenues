@@ -6,9 +6,9 @@ const shiftsService = require("../business-logic/shifts-service");
 async function submitShift(req, res) {
   const { id } = req.user;
   const values = _.pick(req.body, [
-    "deliveriesPaymentReceived",
-    "creditTipsReceived",
-    "cashTipsReceived",
+    "deliveries",
+    "creditTips",
+    "cashTips",
     "timestamp",
   ]);
   const shift = await shiftsService.submitShift({

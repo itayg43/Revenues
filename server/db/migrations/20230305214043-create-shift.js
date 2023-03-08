@@ -13,15 +13,27 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      deliveriesPaymentReceived: {
+      deliveries: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      creditTipsReceived: {
+      deliveriesFee: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      cashTipsReceived: {
+      creditTips: {
+        allowNull: false,
+        type: Sequelize.FLOAT,
+      },
+      creditTipsVat: {
+        allowNull: false,
+        type: Sequelize.FLOAT,
+      },
+      creditTipsFee: {
+        allowNull: false,
+        type: Sequelize.FLOAT,
+      },
+      cashTips: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
@@ -29,11 +41,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      status: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      statusChangeTimestamp: Sequelize.DATE,
     });
   },
   async down(queryInterface, Sequelize) {

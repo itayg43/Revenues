@@ -1,19 +1,19 @@
 const validateSchema = require("../../../../middlewares/validate-schema");
 
 const submitShiftSchema = {
-  deliveriesPaymentReceived: {
+  deliveries: {
     exists: {
-      errorMessage: "Deliveries payment received is required.",
+      errorMessage: "Deliveries is required.",
     },
   },
-  creditTipsReceived: {
+  creditTips: {
     exists: {
-      errorMessage: "Credit tips received is required.",
+      errorMessage: "Credit tips is required.",
     },
   },
-  cashTipsReceived: {
+  cashTips: {
     exists: {
-      errorMessage: "Cash tips received is required.",
+      errorMessage: "Cash tips is required.",
     },
   },
   timestamp: {
