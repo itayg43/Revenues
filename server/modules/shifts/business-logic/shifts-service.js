@@ -1,15 +1,15 @@
+const { Shift } = require("../../../db/models");
 const shiftsDataAccess = require("../data-access/shifts-data-access");
 const profilesService = require("../../profiles/business-logic/profiles-service");
-const calculateFee = require("./utils/calculate-fee");
-const calculateVat = require("./utils/calculate-vat");
+const vat = require("../../../constants/vat");
 
 async function submitShift(values) {
   const { uid, deliveries, creditTips } = values;
   const profile = await profilesService.getProfileByUid(uid);
   const fee = profile.monthlyEmployerCompanyFee;
-  const deliveriesFee = calculateFee(deliveries, fee);
-  const creditTipsVat = calculateVat(creditTips);
-  const creditTipsFee = calculateFee(creditTips - creditTipsVat, fee);
+  const deliveriesFee = Shift.calculateFee(deliveries, fee);
+  const creditTipsVat = Shift.calculateVat(creditTips, vat);
+  const creditTipsFee = Shift.calculateFee(creditTips - creditTipsVat, fee);
   return await shiftsDataAccess.submitShift({
     deliveriesFee,
     creditTipsVat,
