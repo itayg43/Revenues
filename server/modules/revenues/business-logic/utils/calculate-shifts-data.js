@@ -1,5 +1,14 @@
+const initialShiftsData = {
+  deliveries: 0,
+  deliveriesFee: 0,
+  creditTips: 0,
+  creditTipsVat: 0,
+  creditTipsFee: 0,
+  cashTips: 0,
+};
+
 function calculateShiftsData(shifts) {
-  return shifts.reduce(
+  const shiftsData = shifts.reduce(
     (data, currShift) => ({
       deliveries: data.deliveries + currShift.deliveries,
       deliveriesFee: data.deliveriesFee + currShift.deliveriesFee,
@@ -8,15 +17,23 @@ function calculateShiftsData(shifts) {
       creditTipsFee: data.creditTipsFee + currShift.creditTipsFee,
       cashTips: data.cashTips + currShift.cashTips,
     }),
-    {
-      deliveries: 0,
-      deliveriesFee: 0,
-      creditTips: 0,
-      creditTipsVat: 0,
-      creditTipsFee: 0,
-      cashTips: 0,
-    }
+    { ...initialShiftsData }
   );
+  return {
+    grossEarningsExcludeCashTips:
+      calculateGrossEarningsExcludeCashTips(shiftsData),
+    ...shiftsData,
+  };
+}
+
+function calculateGrossEarningsExcludeCashTips(data) {
+  const value =
+    data.deliveries -
+    data.deliveriesFee +
+    data.creditTips -
+    data.creditTipsVat -
+    data.creditTipsFee;
+  return parseFloat(value.toFixed(2));
 }
 
 module.exports = calculateShiftsData;
