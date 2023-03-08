@@ -12,6 +12,7 @@ async function calculateMonthlyRevenues(uid, month) {
   ]);
   const expensesData = calculateExpensesData(expenses, profile);
   const shiftsData = calculateShiftsData(shifts);
+  console.log(expensesData, shiftsData);
 }
 
 module.exports = {
