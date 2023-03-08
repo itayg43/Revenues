@@ -1,20 +1,21 @@
-const nationalInsuranceTax = {
-  reduceRate: 0.0705,
-  reduceSalary: 7122,
-  fullRate: 0.196,
+const nI = {
+  reduce: {
+    rate: 0.0705,
+    salary: 7122,
+    fee: 7122 * 0.0705,
+  },
+  full: {
+    rate: 0.196,
+  },
 };
 
 function calculateNationalInsuranceTaxFee(shiftsData) {
-  const { grossEarningsExcludeCashTips } = shiftsData;
-  if (grossEarningsExcludeCashTips <= nationalInsuranceTax.reduceSalary) {
-    return grossEarningsExcludeCashTips * nationalInsuranceTax.reduceRate;
+  const { grossEarningsExcludeCashTips: earnings } = shiftsData;
+  if (earnings <= nI.reduce.salary) {
+    return earnings * nI.reduce.rate;
   }
-  const fullReduceRateFee =
-    nationalInsuranceTax.reduceSalary * nationalInsuranceTax.reduceRate;
-  const proportionalFullRateFee =
-    (grossEarningsExcludeCashTips - nationalInsuranceTax.reduceSalary) *
-    nationalInsuranceTax.fullRate;
-  return fullReduceRateFee + proportionalFullRateFee;
+  const remainFee = (earnings - nI.reduce.salary) * nI.full.rate;
+  return nI.reduce.fee + remainFee;
 }
 
 module.exports = calculateNationalInsuranceTaxFee;
