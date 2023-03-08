@@ -14,14 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       category: DataTypes.STRING,
       cost: DataTypes.FLOAT,
       timestamp: DataTypes.DATE,
-      status: {
-        type: DataTypes.STRING,
-        defaultValue: "active",
-      },
-      statusChangeTimestamp: {
-        type: DataTypes.DATE,
-        defaultValue: null,
-      },
     },
     {
       sequelize,

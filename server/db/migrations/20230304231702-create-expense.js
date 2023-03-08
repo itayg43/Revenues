@@ -25,11 +25,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      status: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      statusChangeTimestamp: Sequelize.DATE,
     });
   },
   async down(queryInterface, Sequelize) {
