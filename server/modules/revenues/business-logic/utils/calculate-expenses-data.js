@@ -1,24 +1,12 @@
 function calculateExpensesData(expenses, profile) {
+  const { monthlyInsurancePayments: insurance } = profile;
   return expenses.reduce(
     (data, currExpense) => {
-      switch (currExpense.category) {
-        case "fuel": {
-          data.fuel += currExpense.cost;
-          break;
-        }
-        case "maintenance": {
-          data.maintenance += currExpense.cost;
-          break;
-        }
-        case "equipment": {
-          data.equipment += currExpense.cost;
-          break;
-        }
-      }
+      data[currExpense.category] += currExpense.cost;
       return data;
     },
     {
-      insurance: profile.monthlyInsurancePayments,
+      insurance,
       fuel: 0,
       maintenance: 0,
       equipment: 0,
