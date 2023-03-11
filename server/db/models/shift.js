@@ -7,23 +7,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "uid",
       });
     }
-
-    static calculateFee(value, fee) {
-      return value * (fee / 100);
-    }
-
-    static calculateVat(value, vat) {
-      return value * vat;
-    }
   }
   Shift.init(
     {
       uid: DataTypes.INTEGER,
       deliveries: DataTypes.FLOAT,
-      deliveriesFee: DataTypes.FLOAT,
       creditTips: DataTypes.FLOAT,
-      creditTipsVat: DataTypes.FLOAT,
-      creditTipsFee: DataTypes.FLOAT,
       cashTips: DataTypes.FLOAT,
       timestamp: DataTypes.DATE,
     },

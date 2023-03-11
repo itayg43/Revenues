@@ -17,19 +17,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      deliveriesFee: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
       creditTips: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      creditTipsVat: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      creditTipsFee: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
