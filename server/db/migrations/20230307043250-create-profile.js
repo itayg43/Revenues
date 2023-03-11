@@ -13,15 +13,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      incomeTaxCreditPoints: {
+      creditPoints: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      monthlyEmployerCompanyFee: {
+      commissionRate: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      monthlyInsurancePayments: {
+      insurancePayment: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },

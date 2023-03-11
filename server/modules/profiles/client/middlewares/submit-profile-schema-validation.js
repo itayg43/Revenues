@@ -1,19 +1,19 @@
 const validateSchema = require("../../../../middlewares/validate-schema");
 
 const submitProfileSchema = {
-  incomeTaxCreditPoints: {
+  creditPoints: {
     exists: {
-      errorMessage: "Income tax credit points is required.",
+      errorMessage: "Credit points is required.",
     },
   },
-  monthlyEmployerCompanyFee: {
+  commissionRate: {
     exists: {
-      errorMessage: "Monthly employer company fee is required.",
+      errorMessage: "Commission rate is required.",
     },
   },
-  monthlyInsurancePayments: {
+  insurancePayment: {
     exists: {
-      errorMessage: "Monthly insurance payments is required.",
+      errorMessage: "Insurance payment is required.",
     },
   },
 };

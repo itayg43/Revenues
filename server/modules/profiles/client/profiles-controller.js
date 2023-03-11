@@ -6,9 +6,9 @@ const profilesService = require("../business-logic/profiles-service");
 async function submitProfile(req, res) {
   const { id } = req.user;
   const values = _.pick(req.body, [
-    "incomeTaxCreditPoints",
-    "monthlyEmployerCompanyFee",
-    "monthlyInsurancePayments",
+    "creditPoints",
+    "commissionRate",
+    "insurancePayment",
   ]);
   const profile = await profilesService.submitProfile({
     uid: id,
