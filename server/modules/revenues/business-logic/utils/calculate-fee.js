@@ -1,5 +1,5 @@
-function calculateFee(value, fee) {
-  return value * (fee / 100);
+function calculateFee(value, rate) {
+  return value * (rate / 100);
 }
 
 module.exports = calculateFee;
