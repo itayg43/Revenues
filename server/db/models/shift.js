@@ -7,6 +7,15 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "uid",
       });
     }
+
+    static calculateVat(value) {
+      const vatRate = 0.17;
+      return value * vatRate;
+    }
+
+    static calculateCommission(value, rate) {
+      return value * rate;
+    }
   }
   Shift.init(
     {
@@ -14,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       deliveries: DataTypes.FLOAT,
       creditTips: DataTypes.FLOAT,
       cashTips: DataTypes.FLOAT,
+      vat: DataTypes.FLOAT,
+      commission: DataTypes.FLOAT,
       timestamp: DataTypes.DATE,
     },
     {
