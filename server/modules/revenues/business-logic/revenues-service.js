@@ -1,31 +1,52 @@
+const _ = require("lodash");
+
 const profilesService = require("../../profiles/business-logic/profiles-service");
 const expensesService = require("../../expenses/business-logic/expenses-service");
 const shiftsService = require("../../shifts/business-logic/shifts-service");
-const calculateExpensesData = require("./utils/calculate-expenses-data");
-const calculateShiftsData = require("./utils/calculate-shifts-data");
+const sumShiftsData = require("./utils/sum-shifts-data");
 const calculateNationalInsuranceTaxFee = require("./utils/calculate-national-insurance-tax-fee");
 const calculateIncomeTaxFee = require("./utils/calculate-income-tax-fee");
+const sumExpensesData = require("./utils/sum-expenses-data");
 
-async function calculateMonthlyRevenues(uid, month) {
+async function calculateMonthRevenue(uid, month) {
   const [profile, expenses, shifts] = await Promise.all([
     profilesService.getProfileByUid(uid),
     expensesService.getExpensesByUidAndMonth(uid, month),
     shiftsService.getShiftsByUidAndMonth(uid, month),
   ]);
-  const shiftsData = calculateShiftsData(shifts, profile);
-  const nationalInsuranceTaxFee = calculateNationalInsuranceTaxFee(shiftsData);
-  const incomeTaxFee = calculateIncomeTaxFee(shiftsData, profile);
-  const expensesData = calculateExpensesData(expenses, profile);
+  const shiftsData = sumShiftsData(shifts);
+  const nationalInsurance = calculateNationalInsuranceTaxFee(
+    shiftsData.grossEarningsExclCashTips
+  );
+  const incomeTax = calculateIncomeTaxFee(
+    shiftsData.grossEarningsExclCashTips,
+    profile.creditPoints
+  );
+  const expensesData = sumExpensesData(expenses, profile.insurancePayment);
+  const netEarnings =
+    shiftsData.grossEarnings -
+    nationalInsurance -
+    incomeTax -
+    profile.insurancePayment -
+    expensesData.total;
   return {
-    shifts: shiftsData,
+    shifts: _.omit(shiftsData, [
+      "vat",
+      "commission",
+      "grossEarnings",
+      "grossEarningsExclCashTips",
+    ]),
+    vat: shiftsData.vat,
+    commission: shiftsData.commission,
     taxes: {
-      nationalInsurance: nationalInsuranceTaxFee,
-      incomeTax: incomeTaxFee,
+      nationalInsurance,
+      incomeTax,
     },
-    expenses: expensesData,
+    expenses: _.omit(expensesData, ["total"]),
+    net: netEarnings,
   };
 }
 
 module.exports = {
-  calculateMonthlyRevenues,
+  calculateMonthRevenue,
 };

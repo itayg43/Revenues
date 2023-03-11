@@ -7,7 +7,7 @@ const revenuesRouter = express.Router();
 revenuesRouter.get(
   "/",
   validateUserAuthentication,
-  revenuesController.calculateMonthlyRevenues
+  revenuesController.calculateMonthRevenue
 );
 
 module.exports = revenuesRouter;

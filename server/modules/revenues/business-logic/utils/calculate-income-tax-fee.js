@@ -16,34 +16,20 @@ const iT = {
   },
 };
 
-function calculateIncomeTaxFee(shiftsData, profile) {
-  const { incomeTaxCreditPoints: creditPoints } = profile;
-  const { grossEarningsExcludeCashTips: earnings } = shiftsData;
-  const incomeTaxCredit = creditPoints * iT.creditPointValue;
-  const incomeTaxFee = handleIncomeTaxFeeCalculation(earnings);
-  return incomeTaxFee > incomeTaxCredit ? incomeTaxFee - incomeTaxCredit : 0;
+function calculateIncomeTaxFee(earnings, creditPoints) {
+  const credit = creditPoints * iT.creditPointValue;
+  const fee = calculateFee(earnings);
+  return fee > credit ? fee - credit : 0;
 }
 
-function handleIncomeTaxFeeCalculation(earnings) {
+function calculateFee(earnings) {
   if (earnings <= iT.l1.salary) {
-    return handleLevelOne(earnings);
+    return earnings * iT.l1.rate;
   }
   if (earnings > iT.l1.salary && earnings <= iT.l2.salary) {
-    return handleLevelTwo(earnings);
+    const remainFee = (earnings - iT.l1.salary) * iT.l2.rate;
+    return iT.l1.fee + remainFee;
   }
-  return handleLevelThree(earnings);
-}
-
-function handleLevelOne(earnings) {
-  return earnings * iT.l1.rate;
-}
-
-function handleLevelTwo(earnings) {
-  const remainFee = (earnings - iT.l1.salary) * iT.l2.rate;
-  return iT.l1.fee + remainFee;
-}
-
-function handleLevelThree(earnings) {
   const remainFee = (earnings - iT.l2.salary) * iT.l3.rate;
   return iT.l1.fee + iT.l2.fee + remainFee;
 }

@@ -1,13 +1,13 @@
 const statusCode = require("../../../constants/status-code");
 const revenuesService = require("../business-logic/revenues-service");
 
-async function calculateMonthlyRevenues(req, res) {
+async function calculateMonthRevenue(req, res) {
   const { id } = req.user;
   const { month } = req.query;
-  const revenues = await revenuesService.calculateMonthlyRevenues(id, month);
-  res.status(statusCode.success.ok).json(revenues);
+  const revenue = await revenuesService.calculateMonthRevenue(id, month);
+  res.status(statusCode.success.ok).json(revenue);
 }
 
 module.exports = {
-  calculateMonthlyRevenues,
+  calculateMonthRevenue,
 };

@@ -9,8 +9,7 @@ const nI = {
   },
 };
 
-function calculateNationalInsuranceTaxFee(shiftsData) {
-  const { grossEarningsExcludeCashTips: earnings } = shiftsData;
+function calculateNationalInsuranceTaxFee(earnings) {
   if (earnings <= nI.reduce.salary) {
     return earnings * nI.reduce.rate;
   }
