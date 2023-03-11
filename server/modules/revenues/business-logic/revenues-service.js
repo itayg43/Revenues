@@ -12,7 +12,7 @@ async function calculateMonthlyRevenues(uid, month) {
     expensesService.getExpensesByUidAndMonth(uid, month),
     shiftsService.getShiftsByUidAndMonth(uid, month),
   ]);
-  const shiftsData = calculateShiftsData(shifts);
+  const shiftsData = calculateShiftsData(shifts, profile);
   const nationalInsuranceTaxFee = calculateNationalInsuranceTaxFee(shiftsData);
   const incomeTaxFee = calculateIncomeTaxFee(shiftsData, profile);
   const expensesData = calculateExpensesData(expenses, profile);

@@ -1,23 +1,21 @@
-const initialShiftsData = {
-  deliveries: 0,
-  deliveriesFee: 0,
-  creditTips: 0,
-  creditTipsVat: 0,
-  creditTipsFee: 0,
-  cashTips: 0,
-};
+const calculateFee = require("./calculate-fee");
+const calculateVat = require("./calculate-vat");
 
-function calculateShiftsData(shifts) {
+function calculateShiftsData(shifts, profile) {
+  const { monthlyEmployerCompanyFee: fee } = profile;
   const shiftsData = shifts.reduce(
     (data, currShift) => ({
       deliveries: data.deliveries + currShift.deliveries,
-      deliveriesFee: data.deliveriesFee + currShift.deliveriesFee,
       creditTips: data.creditTips + currShift.creditTips,
-      creditTipsVat: data.creditTipsVat + currShift.creditTipsVat,
-      creditTipsFee: data.creditTipsFee + currShift.creditTipsFee,
       cashTips: data.cashTips + currShift.cashTips,
     }),
-    { ...initialShiftsData }
+    { deliveries: 0, creditTips: 0, cashTips: 0 }
+  );
+  shiftsData.deliveriesFee = calculateFee(shiftsData.deliveries, fee);
+  shiftsData.creditTipsVat = calculateVat(shiftsData.creditTips);
+  shiftsData.creditTipsFee = calculateFee(
+    shiftsData.creditTips - shiftsData.creditTipsVat,
+    fee
   );
   return {
     grossEarningsExcludeCashTips:
