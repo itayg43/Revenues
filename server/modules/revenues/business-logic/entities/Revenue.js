@@ -20,7 +20,6 @@ class Revenue {
     insurance: 0,
     fuel: 0,
     maintenance: 0,
-    equipment: 0,
   };
 
   gross = 0;
@@ -84,8 +83,7 @@ class Revenue {
       this.taxes.income -
       this.expenses.insurance -
       this.expenses.fuel -
-      this.expenses.maintenance -
-      this.expenses.equipment;
+      this.expenses.maintenance;
   }
 }
 
