@@ -1,5 +1,3 @@
-const _ = require("lodash");
-
 const profilesService = require("../../profiles/business-logic/profiles-service");
 const expensesService = require("../../expenses/business-logic/expenses-service");
 const shiftsService = require("../../shifts/business-logic/shifts-service");
