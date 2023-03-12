@@ -7,16 +7,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "uid",
       });
     }
-
-    calculateVat() {
-      const vatRate = 0.17;
-      return this.creditTips * vatRate;
-    }
-
-    calculateCommission(rate) {
-      const vat = this.calculateVat();
-      return (this.deliveries + this.creditTips - vat) * rate;
-    }
   }
   Shift.init(
     {

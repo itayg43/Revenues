@@ -9,7 +9,7 @@ const nI = {
   },
 };
 
-function calculateNationalInsuranceTaxFee(earnings) {
+function calculateNationalInsuranceTax(earnings) {
   if (earnings <= nI.reduce.salary) {
     return earnings * nI.reduce.rate;
   }
@@ -17,4 +17,4 @@ function calculateNationalInsuranceTaxFee(earnings) {
   return nI.reduce.fee + remainFee;
 }
 
-module.exports = calculateNationalInsuranceTaxFee;
+module.exports = calculateNationalInsuranceTax;

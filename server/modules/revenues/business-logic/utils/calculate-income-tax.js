@@ -16,7 +16,7 @@ const iT = {
   },
 };
 
-function calculateIncomeTaxFee(earnings, creditPoints) {
+function calculateIncomeTax(earnings, creditPoints) {
   const credit = creditPoints * iT.creditPointValue;
   const fee = calculateFee(earnings);
   return fee > credit ? fee - credit : 0;
@@ -34,4 +34,4 @@ function calculateFee(earnings) {
   return iT.l1.fee + iT.l2.fee + remainFee;
 }
 
-module.exports = calculateIncomeTaxFee;
+module.exports = calculateIncomeTax;
