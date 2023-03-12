@@ -14,7 +14,7 @@ async function calculateMonthRevenue(uid, month) {
     expensesService.getExpensesByUidAndMonth(uid, month),
     shiftsService.getShiftsByUidAndMonth(uid, month),
   ]);
-  const shiftsData = sumShiftsData(shifts);
+  const shiftsData = sumShiftsData(shifts, profile.commissionRate);
   const nationalInsurance = calculateNationalInsuranceTaxFee(
     shiftsData.grossEarningsExclCashTips
   );
@@ -27,7 +27,6 @@ async function calculateMonthRevenue(uid, month) {
     shiftsData.grossEarnings -
     nationalInsurance -
     incomeTax -
-    profile.insurancePayment -
     expensesData.total;
   return {
     shifts: _.omit(shiftsData, [

@@ -25,14 +25,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      vat: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      commission: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
       timestamp: {
         allowNull: false,
         type: Sequelize.DATE,

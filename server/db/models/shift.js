@@ -8,13 +8,14 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    static calculateVat(value) {
+    calculateVat() {
       const vatRate = 0.17;
-      return value * vatRate;
+      return this.creditTips * vatRate;
     }
 
-    static calculateCommission(value, rate) {
-      return value * rate;
+    calculateCommission(rate) {
+      const vat = this.calculateVat();
+      return (this.deliveries + this.creditTips - vat) * rate;
     }
   }
   Shift.init(
@@ -23,8 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       deliveries: DataTypes.FLOAT,
       creditTips: DataTypes.FLOAT,
       cashTips: DataTypes.FLOAT,
-      vat: DataTypes.FLOAT,
-      commission: DataTypes.FLOAT,
       timestamp: DataTypes.DATE,
     },
     {
