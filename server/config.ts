@@ -3,22 +3,16 @@ import dotenv from "dotenv";
 dotenv.config();
 
 type EnvValues = {
-  PORT: number | undefined;
+  PORT?: number;
 };
 
-type ConfigValues = {
-  PORT: number;
-};
+type ConfigValues = Required<EnvValues>;
 
-const envValues = getEnvValues();
+const envValues: EnvValues = {
+  PORT: process.env.PORT ? parseInt(process.env.PORT) : undefined,
+};
 
 export default getConfigValues(envValues);
-
-function getEnvValues(): EnvValues {
-  return {
-    PORT: process.env.PORT ? parseInt(process.env.PORT) : undefined,
-  };
-}
 
 function getConfigValues(envValues: EnvValues): ConfigValues {
   Object.entries(envValues).map(([key, value]) => {
