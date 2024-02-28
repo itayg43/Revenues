@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 
-import { CustomError } from "../types/error";
+import { BaseCustomError } from "../types/custom-errors";
 
 const DEFAULT_ERROR_MESSAGE = "Something went wrong";
 
 const errorHandler = (
-  error: Error | CustomError,
+  error: Error | BaseCustomError,
   _: Request,
   res: Response,
   next: NextFunction
@@ -18,7 +18,7 @@ const errorHandler = (
   }
 
   const statusCode =
-    error instanceof CustomError
+    error instanceof BaseCustomError
       ? error.statusCode
       : StatusCodes.INTERNAL_SERVER_ERROR;
 
