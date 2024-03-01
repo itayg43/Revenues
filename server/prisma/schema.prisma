@@ -27,7 +27,7 @@ model Expense {
 }
 
 enum ExpenseType {
-  FUEL
-  MAINTENANCE
-  EQUIPMENT
+  fuel
+  maintenance
+  equipment
 }
