@@ -6,6 +6,7 @@ import { StatusCodes } from "http-status-codes";
 
 import requestLogger from "./middlewares/request-logger";
 import errorHandler from "./middlewares/error-handler";
+import apiRouter from "./routers/api-router";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(requestLogger);
 app.get("/health", (_: Request, res: Response) => {
   res.sendStatus(StatusCodes.OK);
 });
+
+app.use("/api", apiRouter);
 
 app.use(errorHandler);
 
