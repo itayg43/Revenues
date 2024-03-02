@@ -10,7 +10,7 @@ const expensesRouter = express.Router();
 expensesRouter.post(
   "/",
   [validateSchema(createExpenseSchema)],
-  asyncHandler(expensesController.addExpense)
+  asyncHandler(expensesController.createExpense)
 );
 
 export default expensesRouter;
