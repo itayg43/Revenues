@@ -16,3 +16,5 @@ process.on("SIGINT", exitHandler(0, "SIGINT"));
 server.listen(config.PORT, () => {
   console.log(`Server listening on port: ${config.PORT}`);
 });
+
+export default server;
