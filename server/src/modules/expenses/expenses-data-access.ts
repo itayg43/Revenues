@@ -1,7 +1,11 @@
 import { ExpenseType } from "@prisma/client";
 import prismaClient from "../../clients/prisma-client";
 
-const addExpense = async (type: ExpenseType, cost: number, userId: number) => {
+export const createExpense = async (
+  type: ExpenseType,
+  cost: number,
+  userId: number
+) => {
   return await prismaClient.expense.create({
     data: {
       type,
@@ -9,8 +13,4 @@ const addExpense = async (type: ExpenseType, cost: number, userId: number) => {
       userId,
     },
   });
-};
-
-export default {
-  addExpense,
 };

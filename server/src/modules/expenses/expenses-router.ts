@@ -2,14 +2,14 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 
 import validateSchema from "../../middlewares/validate-schema";
-import { addExpenseSchema } from "./expenses-schemas";
-import expensesController from "./expenses-controller";
+import { createExpenseSchema } from "./expenses-schemas";
+import * as expensesController from "./expenses-controller";
 
 const expensesRouter = express.Router();
 
 expensesRouter.post(
   "/",
-  [validateSchema(addExpenseSchema)],
+  [validateSchema(createExpenseSchema)],
   asyncHandler(expensesController.addExpense)
 );
 

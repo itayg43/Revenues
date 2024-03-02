@@ -1,11 +1,7 @@
-import expensesDataAccess from "./expenses-data-access";
-import { AddExpenseInput } from "./expenses-schemas";
+import * as expensesDataAccess from "./expenses-data-access";
+import { CreateExpenseInput } from "./expenses-schemas";
 
-const addExpense = async (input: AddExpenseInput["body"]) => {
+export const createExpense = async (input: CreateExpenseInput) => {
   const { type, cost } = input;
-  return await expensesDataAccess.addExpense(type, cost, 1);
-};
-
-export default {
-  addExpense,
+  return await expensesDataAccess.createExpense(type, cost, 1);
 };

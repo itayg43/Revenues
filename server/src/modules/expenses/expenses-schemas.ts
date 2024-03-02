@@ -1,7 +1,7 @@
 import { ExpenseType } from "@prisma/client";
 import z from "zod";
 
-export const addExpenseSchema = z.object({
+export const createExpenseSchema = z.object({
   body: z.object({
     type: z.nativeEnum(ExpenseType, {
       required_error: "Type is required",
@@ -15,4 +15,4 @@ export const addExpenseSchema = z.object({
   }),
 });
 
-export type AddExpenseInput = z.TypeOf<typeof addExpenseSchema>;
+export type CreateExpenseInput = z.TypeOf<typeof createExpenseSchema>["body"];
