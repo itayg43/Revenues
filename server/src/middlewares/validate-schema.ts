@@ -15,9 +15,14 @@ const validateSchema =
     } catch (error: any) {
       console.log(error);
 
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json(error instanceof ZodError ? error.errors : error.message);
+      const message =
+        error instanceof ZodError
+          ? error.errors
+              .map((issue) => `${issue.path[1]}: ${issue.message}`)
+              .join(", \n")
+          : error.message;
+
+      return res.status(StatusCodes.BAD_REQUEST).json({ message });
     }
   };
 
