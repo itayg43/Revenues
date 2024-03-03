@@ -1,6 +1,6 @@
 # Server
 
-Set .env.dev and .env.test values
+Create .env.dev and .env.test files and set the values according to the .env.example file
 
 ```
 cd server && npm i
