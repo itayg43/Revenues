@@ -13,14 +13,14 @@ const validateSchema =
       });
       next();
     } catch (error: any) {
-      console.log(error);
-
       const message =
         error instanceof ZodError
           ? error.errors
               .map((issue) => `${issue.path[1]}: ${issue.message}`)
               .join(", \n")
           : error.message;
+
+      console.error(message);
 
       return res.status(StatusCodes.BAD_REQUEST).json({ message });
     }
