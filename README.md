@@ -1,37 +1,25 @@
 # Server
 
-Create .env.dev and .env.test files and set the values according to the .env.example file
+Create and set .env file.
 
 ```
-cd server && npm i
-```
-
-```
-docker-compose up
+npm i
 ```
 
 ```
-npx prisma migrate dev --name init
-```
-
-When npx prisma migrate dev is executed against a newly created database, seeding is also triggered. The seed file in prisma/seed.ts will be executed and your database will be populated with the sample data.
-
-In order to run the seed file manually:
-
-1. add to the package.json:
-
-```
-"prisma": {
-  "seed": "ts-node prisma/seed.ts"
-},
-```
-
-2. run:
-
-```
-npx prisma db seed
+chmod +x scripts/*
 ```
 
 ```
-npm run start:dev
+brew install coreutils && alias timeout=gtimeout
+```
+
+```
+npm run dev
+```
+
+OR
+
+```
+npm run test:integration
 ```
